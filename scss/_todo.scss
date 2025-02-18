@@ -1,0 +1,69 @@
+.container {
+  display: flex;
+  width: 70vw;
+  height: 80vh;
+  border: 2px solid black;
+  margin: 50px auto;
+}
+
+.sidebar {
+  background-color: #0d22bf;
+  width: 30vw;
+  height: 100%;
+  h1 {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 20px;
+  }
+  ul {
+    margin-top: 50px;
+  }
+  button {
+    color: white;
+    background-color: #0d22bf;
+    font-size: 1.25rem;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0 0px 20px;
+    &:hover {
+      color: wheat;
+      border-radius: 4px;
+    }
+  }
+}
+
+.main {
+  width: 70vw;
+  height: 100vh;
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin: 30px 0 30px 0;
+    font-weight: 600;
+  }
+  .tasks {
+    height: auto;
+    .task {
+      border: 1px solid blue;
+      // margin-left: 10px;
+      display: flex;
+      height: 50px;
+      text-align: start;
+      align-items: center;
+      justify-content: space-between;
+
+      > div {
+        display: flex;
+        align-items: center;
+      }
+      p {
+        margin-left: 5px;
+      }
+      select {
+        margin: 0 20px 0 20px;
+      }
+    }
+  }
+}
