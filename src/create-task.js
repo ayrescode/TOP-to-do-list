@@ -1,4 +1,5 @@
 const project = [];
+const taskArea = document.querySelector('.tasks');
 
 class task {
   constructor(title, date, priority) {
@@ -14,7 +15,9 @@ class task {
 
 const clean = new task('lavar louça', 'amanhã', 'high');
 const clean1 = new task('lavar louça', 'amanhã', 'high');
+const clean2 = new task('lavar louça', 'amanhã', 'high');
 
+clean2.createTask();
 clean1.createTask();
 clean.createTask();
 
@@ -37,12 +40,13 @@ class display {
     return this.unified;
   }
   displayItem() {
-    for (const item of this.unifyshelf()) {
+    taskArea.innerHTML = '';
+    for (const item of project) {
       const task = document.createElement('div');
       task.setAttribute('data-index', project.indexOf(item));
       task.innerHTML = `<div class="task">
                     <div><input type="checkbox" checked="" id="">
-                        <p>${item.title}</p>
+                        <label for="task">${item.title}</label>
                     </div>
                     <div>
                         <input type="date">
@@ -51,13 +55,30 @@ class display {
                             <option value="medium">Medium</option>
                             <option value="low">Low</option>
                         </select>
+                    <button class="delete">Delete task</button>                
                     </div>
                 </div>`;
       console.log(project.indexOf(item));
       canva.appendChild(task);
     }
   }
+  deleteTask(index) {
+    project.splice(index, 1);
+    this.displayItem();
+  }
 }
+
+taskArea.addEventListener('click', (event) => {
+  if (event.target.classList.contains('delete')) {
+    const index = event.target.parentElement.getAttribute('data-index');
+    test.deleteTask(index);
+  }
+});
+
+// function deleteBook(index) {
+//   project.splice(index, 1);
+//   test.displayItem();
+// }
 
 const test = new display(project);
 
