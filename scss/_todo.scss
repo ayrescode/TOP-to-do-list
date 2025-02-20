@@ -16,7 +16,7 @@
     font-size: 2rem;
     margin-top: 20px;
   }
-  ul {
+  nav {
     margin-top: 50px;
   }
   button {
@@ -31,6 +31,9 @@
       color: wheat;
       border-radius: 4px;
     }
+  }
+  .ativo {
+    border: 3px solid black;
   }
 }
 
@@ -47,7 +50,6 @@
     height: auto;
     .task {
       border: 1px solid blue;
-      // margin-left: 10px;
       display: flex;
       height: 50px;
       text-align: start;
