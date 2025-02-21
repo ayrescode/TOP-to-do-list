@@ -1,10 +1,12 @@
 // index.js
 import './styles.css';
-import './create-task';
 import './display';
+import './create-task';
 import './navigation';
 
 import { task } from './create-task';
+
+const initCreate = new task().createEvent();
 
 class unifyShelfs {
   constructor(...array) {
