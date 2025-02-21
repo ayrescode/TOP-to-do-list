@@ -1,8 +1,10 @@
 import { display } from './display';
-const projectTask = [];
-const Important = [];
-const Side = [];
-const initDisplay = new display(Important);
+import { initDisplay } from './navigation';
+import { projectTask } from './navigation';
+import { important } from './navigation';
+import { side } from './navigation';
+
+// const initDisplay = new display(Important);
 
 export class task {
   constructor(title, date, priority, menuTab) {
@@ -26,10 +28,10 @@ export class task {
       priority.value,
       project.value
     );
-    if (newTask.menuTab === 'Important') {
-      Important.push(newTask);
-    } else if (newTask.menuTab === 'Side') {
-      Side.push(newTask);
+    if (newTask.menuTab === 'important') {
+      important.push(newTask);
+    } else if (newTask.menuTab === 'side') {
+      side.push(newTask);
     }
     initDisplay.displayItem();
 
