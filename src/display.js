@@ -40,7 +40,6 @@ export class display {
   }
   deleteTask(index) {
     this.shelf.splice(index, 1);
-    console.log(this.shelf);
     this.displayItem();
   }
   deleteEvent() {

@@ -1,14 +1,15 @@
 import { display } from './display';
 const projectTask = [];
-const initDisplay = new display(projectTask);
+const Important = [];
+const Side = [];
+const initDisplay = new display(Important);
 
 export class task {
-  constructor(title, date, priority, project) {
+  constructor(title, date, priority, menuTab) {
     this.title = title;
     this.date = date;
     this.priority = priority;
-    this.project = project;
-    // this.createEvent();
+    this.menuTab = menuTab;
   }
   createEvent() {
     const createButton = document.querySelector('form>button');
@@ -18,9 +19,18 @@ export class task {
     const title = document.querySelector('#title');
     const date = document.querySelector('#date');
     const priority = document.querySelector('#priority');
-    const project = document.querySelector('project');
-    const testando = new task(title.value, date.value, priority.value);
-    projectTask.push(testando);
+    const project = document.querySelector('#project');
+    const newTask = new task(
+      title.value,
+      date.value,
+      priority.value,
+      project.value
+    );
+    if (newTask.menuTab === 'Important') {
+      Important.push(newTask);
+    } else if (newTask.menuTab === 'Side') {
+      Side.push(newTask);
+    }
     initDisplay.displayItem();
 
     title.value = '';
