@@ -1,5 +1,4 @@
 import { display } from './display';
-
 const navigation = document.querySelector('nav');
 const navigationButton = document.querySelectorAll('nav>button');
 export let initDisplay = new display([]);
@@ -28,7 +27,6 @@ navigation.addEventListener('click', (clickedButton) =>
 
 // remove active class from all items
 function handleClick(clickedButton) {
-  console.log(clickedButton);
   navigationButton.forEach((button) => {
     button.classList.remove('active');
   });
@@ -40,8 +38,12 @@ function handleClick(clickedButton) {
     initDisplay = new display(side);
     initDisplay.displayItem();
   } else if (clickedButton.target.classList.contains('all')) {
-    const all = new unifyShelfs(important, side).unifyallArrays();
-    initDisplay = new display(all);
-    initDisplay.displayItem();
+    allProjectDisplay();
   }
+}
+
+export function allProjectDisplay() {
+  const all = new unifyShelfs(important, side).unifyallArrays();
+  initDisplay = new display(all);
+  initDisplay.displayItem();
 }

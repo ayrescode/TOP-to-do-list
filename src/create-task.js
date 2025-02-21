@@ -1,10 +1,8 @@
-import { display } from './display';
 import { initDisplay } from './navigation';
-import { projectTask } from './navigation';
 import { important } from './navigation';
 import { side } from './navigation';
-
-// const initDisplay = new display(Important);
+const firstButton = document.querySelector('nav>button');
+import { allProjectDisplay } from './navigation';
 
 export class task {
   constructor(title, date, priority, menuTab) {
@@ -33,7 +31,8 @@ export class task {
     } else if (newTask.menuTab === 'side') {
       side.push(newTask);
     }
-    initDisplay.displayItem();
+    allProjectDisplay();
+    // initDisplay.displayItem();
 
     title.value = '';
     date.value = '';
