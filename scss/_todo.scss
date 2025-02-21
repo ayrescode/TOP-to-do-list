@@ -21,6 +21,7 @@
   }
   button {
     color: white;
+    width: 80%;
     background-color: #0d22bf;
     font-size: 1.25rem;
     padding: 10px 20px;
@@ -32,7 +33,7 @@
       border-radius: 4px;
     }
   }
-  .ativo {
+  .active {
     border: 3px solid black;
   }
 }
