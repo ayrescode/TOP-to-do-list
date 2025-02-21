@@ -22,7 +22,7 @@ export class display {
       const task = document.createElement('div');
       task.setAttribute('data-index', this.shelf.indexOf(item));
       task.innerHTML = `<div class="task">
-                      <div><input type="checkbox" checked="" id="task">
+                      <div><input type="checkbox" id="task">
                           <label for="task">${item.title}</label>
                       </div>
                       <div>
