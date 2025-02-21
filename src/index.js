@@ -8,9 +8,7 @@ import { task } from './create-task';
 
 const initCreate = new task().createEvent();
 
-
-
-class unifyShelfs {
+export class unifyShelfs {
   constructor(...array) {
     this.allArrays = array;
   }
