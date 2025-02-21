@@ -2,6 +2,9 @@
 import './styles.css';
 import './create-task';
 import './display';
+import './navigation';
+
+import { task } from './create-task';
 
 class unifyShelfs {
   constructor(...array) {

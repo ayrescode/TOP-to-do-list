@@ -7,7 +7,18 @@ export class display {
   }
   displayItem() {
     taskArea.innerHTML = '';
+
     for (const item of this.shelf) {
+      let selectHigh = '';
+      let selectMedium = '';
+      let selectLow = '';
+      if (item.priority === 'high') {
+        selectHigh = 'selected';
+      } else if (item.priority === 'medium') {
+        selectMedium = 'selected';
+      } else if (item.priority === 'low') {
+        selectLow = 'selected';
+      }
       const task = document.createElement('div');
       task.setAttribute('data-index', this.shelf.indexOf(item));
       task.innerHTML = `<div class="task">
@@ -15,21 +26,21 @@ export class display {
                           <label for="task">${item.title}</label>
                       </div>
                       <div>
-                          <input type="date">
-                          <select name="priority" id="priority">
-                              <option value="high">High</option>
-                              <option value="medium">Medium</option>
-                              <option value="low">Low</option>
+                          <input type="date" id="date" value="${item.date}">
+                          <select name="priority" id="priority" >
+                              <option value="high" ${selectHigh}>High</option>
+                              <option value="medium" ${selectMedium}>Medium</option>
+                              <option value="low" ${selectLow}>Low</option>
                           </select>
                       <button class="delete">Delete task</button>                
                       </div>
                   </div>`;
-      console.log(this.shelf.indexOf(item));
       taskArea.appendChild(task);
     }
   }
   deleteTask(index) {
     this.shelf.splice(index, 1);
+    console.log(this.shelf);
     this.displayItem();
   }
   deleteEvent() {
