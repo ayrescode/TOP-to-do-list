@@ -68,6 +68,9 @@
         margin: 0 20px 0 20px;
       }
     }
+    input[type='checkbox']:checked + label {
+      text-decoration: line-through;
+    }
   }
   .create {
     border: 1px solid blue;
