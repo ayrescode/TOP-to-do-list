@@ -1,8 +1,4 @@
-import { initDisplay } from './navigation';
-import { important } from './navigation';
-import { side } from './navigation';
-const firstButton = document.querySelector('nav>button');
-import { allProjectDisplay } from './navigation';
+const shelf = [];
 
 export class task {
   constructor(title, date, priority, menuTab) {
@@ -10,11 +6,24 @@ export class task {
     this.date = date;
     this.priority = priority;
     this.menuTab = menuTab;
+    // this.shelf = [];
   }
+
+  updateShelf(object) {
+    shelf.push(object);
+  }
+}
+
+export class event {
+  constructor(button) {
+    this.button = document.querySelector(button);
+    this.createEvent();
+  }
+
   createEvent() {
-    const createButton = document.querySelector('form>button');
-    createButton.addEventListener('click', this.createTask);
+    this.button.addEventListener('click', this.createTask);
   }
+
   createTask() {
     const title = document.querySelector('#title');
     const date = document.querySelector('#date');
@@ -26,14 +35,8 @@ export class task {
       priority.value,
       project.value
     );
-    if (newTask.menuTab === 'important') {
-      important.push(newTask);
-    } else if (newTask.menuTab === 'side') {
-      side.push(newTask);
-    }
-    allProjectDisplay();
-    // initDisplay.displayItem();
-
+    newTask.updateShelf(newTask);
+    console.log(shelf);
     title.value = '';
     date.value = '';
     priority.value = 'high';
