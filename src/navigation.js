@@ -1,9 +1,4 @@
 // import { display } from './display';
-// const navigation = document.querySelector('nav');
-// const navigationButton = document.querySelectorAll('nav>button');
-// export let initDisplay = new display([]);
-// export const important = [];
-// export const side = [];
 
 // class unifyShelfs {
 //   constructor(...array) {
@@ -21,17 +16,7 @@
 //   }
 // }
 
-// navigation.addEventListener('click', (clickedButton) =>
-//   handleClick(clickedButton)
-// );
-
-// // remove active class from all items
-// function handleClick(clickedButton) {
-//   navigationButton.forEach((button) => {
-//     button.classList.remove('active');
-//   });
-//   clickedButton.target.classList.add('active');
-//   if (clickedButton.target.classList.contains('important')) {
+//  if (clickedButton.target.classList.contains('important')) {
 //     initDisplay = new display(important);
 //     initDisplay.displayItem();
 //   } else if (clickedButton.target.classList.contains('side')) {
@@ -40,10 +25,27 @@
 //   } else if (clickedButton.target.classList.contains('all')) {
 //     allProjectDisplay();
 //   }
-// }
-
 // export function allProjectDisplay() {
 //   const all = new unifyShelfs(important, side).unifyallArrays();
 //   initDisplay = new display(all);
 //   initDisplay.displayItem();
 // }
+
+const navigationButton = document.querySelectorAll('nav>button');
+
+navigationButton.forEach((button) =>
+  button.addEventListener('click', (clickedButton) =>
+    handleClick(clickedButton)
+  )
+);
+
+// remove active class from all items
+function handleClick(clickedButton) {
+  navigationButton.forEach((button) => {
+    button.classList.remove('active');
+  });
+  clickedButton.target.classList.add('active');
+  console.log(clickedButton.target.innerText);
+}
+
+console.log(navigationButton);

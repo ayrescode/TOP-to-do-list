@@ -1,12 +1,11 @@
 const shelf = [];
 
 export class task {
-  constructor(title, date, priority, menuTab) {
+  constructor(title, date, priority, project) {
     this.title = title;
     this.date = date;
     this.priority = priority;
-    this.menuTab = menuTab;
-    // this.shelf = [];
+    this.project = project;
   }
 
   updateShelf(object) {
