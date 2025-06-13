@@ -1,4 +1,4 @@
-const shelf = [];
+export const shelf = [];
 
 export class task {
   constructor(title, date, priority, project) {

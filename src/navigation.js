@@ -31,6 +31,8 @@
 //   initDisplay.displayItem();
 // }
 
+import { shelf } from './create-task';
+
 const navigationButton = document.querySelectorAll('nav>button');
 
 navigationButton.forEach((button) =>
@@ -45,7 +47,14 @@ function handleClick(clickedButton) {
     button.classList.remove('active');
   });
   clickedButton.target.classList.add('active');
-  console.log(clickedButton.target.innerText);
+  if (clickedButton.target.innerText === 'All projects') {
+    console.log(shelf);
+  } else {
+    const filtered = shelf.filter(
+      (tasks) => tasks.project === clickedButton.target.innerText
+    );
+    console.log(filtered);
+  }
 }
 
 console.log(navigationButton);
