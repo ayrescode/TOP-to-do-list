@@ -1,8 +1,7 @@
 export const shelf = [];
-// import { navigationButton } from './navigation';
 import { displayItem } from './navigation';
 
-const navigationButton = document.querySelectorAll('nav>button');
+// const navigationButton = document.querySelectorAll('nav>button');
 
 export class task {
   constructor(title, date, priority, project) {
@@ -19,7 +18,7 @@ export class task {
   }
 
   checkActiveAndDisplay() {
-    navigationButton.forEach((button) => {
+    this.navigationButton.forEach((button) => {
       if (
         button.classList.contains('active') &&
         button.innerHTML === 'All projects'
