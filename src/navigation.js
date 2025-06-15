@@ -1,60 +1,80 @@
-// import { display } from './display';
-
-// class unifyShelfs {
-//   constructor(...array) {
-//     this.allArrays = array;
-//   }
-//   unified = [];
-//   unifyallArrays() {
-//     for (let i = 0; i < this.allArrays.length; i++) {
-//       let outerArray = this.allArrays[i];
-//       for (let innerArray = 0; innerArray < outerArray.length; innerArray++) {
-//         this.unified.push(outerArray[innerArray]);
-//       }
-//     }
-//     return this.unified;
-//   }
-// }
-
-//  if (clickedButton.target.classList.contains('important')) {
-//     initDisplay = new display(important);
-//     initDisplay.displayItem();
-//   } else if (clickedButton.target.classList.contains('side')) {
-//     initDisplay = new display(side);
-//     initDisplay.displayItem();
-//   } else if (clickedButton.target.classList.contains('all')) {
-//     allProjectDisplay();
-//   }
-// export function allProjectDisplay() {
-//   const all = new unifyShelfs(important, side).unifyallArrays();
-//   initDisplay = new display(all);
-//   initDisplay.displayItem();
-// }
-
+const taskArea = document.querySelector('.tasks');
 import { shelf } from './create-task';
 
 const navigationButton = document.querySelectorAll('nav>button');
 
 navigationButton.forEach((button) =>
   button.addEventListener('click', (clickedButton) =>
-    handleClick(clickedButton)
+    filterAndDisplay(clickedButton)
   )
 );
 
-// remove active class from all items
-function handleClick(clickedButton) {
+// sidebar navigation and project filtering
+function filterAndDisplay(clickedButton) {
   navigationButton.forEach((button) => {
     button.classList.remove('active');
   });
   clickedButton.target.classList.add('active');
   if (clickedButton.target.innerText === 'All projects') {
-    console.log(shelf);
+    displayItem(shelf);
   } else {
     const filtered = shelf.filter(
       (tasks) => tasks.project === clickedButton.target.innerText
     );
-    console.log(filtered);
+    displayItem(filtered);
+    // console.log(filtered);
   }
 }
 
-console.log(navigationButton);
+// function checkActiveAndDisplay() {
+//   navigationButton.forEach((button) => {
+//     if (
+//       button.classList.contains('active') &&
+//       button.innerHTML === 'All projects'
+//     ) {
+//       displayItem(shelf);
+//     } else {
+//       const filtered = shelf.filter(
+//         (tasks) => tasks.project === button.innerHTML
+//       );
+//       displayItem(filtered);
+//     }
+//   });
+// }
+// checkActiveAndDisplay();
+
+// console.log(navigationButton);
+
+export function displayItem(objectArray) {
+  taskArea.innerHTML = '';
+
+  for (const item of objectArray) {
+    let selectHigh = '';
+    let selectMedium = '';
+    let selectLow = '';
+    if (item.priority === 'high') {
+      selectHigh = 'selected';
+    } else if (item.priority === 'medium') {
+      selectMedium = 'selected';
+    } else if (item.priority === 'low') {
+      selectLow = 'selected';
+    }
+    const task = document.createElement('div');
+    task.setAttribute('data-index', objectArray.indexOf(item));
+    task.innerHTML = `<div class="task">
+                      <div><input type="checkbox" id="task">
+                          <label for="task">${item.title}</label>
+                      </div>
+                      <div>
+                          <input type="date" id="date" value="${item.date}">
+                          <select name="priority" id="priority" >
+                              <option value="high" ${selectHigh}>High</option>
+                              <option value="medium" ${selectMedium}>Medium</option>
+                              <option value="low" ${selectLow}>Low</option>
+                          </select>
+                      <button class="delete">Delete task</button>
+                      </div>
+                  </div>`;
+    taskArea.appendChild(task);
+  }
+}

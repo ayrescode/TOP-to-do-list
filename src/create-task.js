@@ -1,4 +1,8 @@
 export const shelf = [];
+// import { navigationButton } from './navigation';
+import { displayItem } from './navigation';
+
+const navigationButton = document.querySelectorAll('nav>button');
 
 export class task {
   constructor(title, date, priority, project) {
@@ -6,10 +10,28 @@ export class task {
     this.date = date;
     this.priority = priority;
     this.project = project;
+    this.navigationButton = document.querySelectorAll('nav>button');
   }
 
   updateShelf(object) {
     shelf.push(object);
+    this.checkActiveAndDisplay();
+  }
+
+  checkActiveAndDisplay() {
+    navigationButton.forEach((button) => {
+      if (
+        button.classList.contains('active') &&
+        button.innerHTML === 'All projects'
+      ) {
+        displayItem(shelf);
+      } else if (button.classList.contains('active')) {
+        const filtered = shelf.filter(
+          (tasks) => tasks.project === button.innerHTML
+        );
+        displayItem(filtered);
+      }
+    });
   }
 }
 
