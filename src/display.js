@@ -34,7 +34,7 @@ export class display {
                               <option value="medium" ${selectMedium}>Medium</option>
                               <option value="low" ${selectLow}>Low</option>
                           </select>
-                      <button class="delete">Delete task</button>                
+                      <button class="delete">Delete task</button>
                       </div>
                   </div>`;
       taskArea.appendChild(task);

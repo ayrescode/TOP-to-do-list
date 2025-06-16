@@ -1,20 +1,47 @@
-import { initDisplay } from './navigation';
-import { important } from './navigation';
-import { side } from './navigation';
-const firstButton = document.querySelector('nav>button');
-import { allProjectDisplay } from './navigation';
+export const shelf = [];
+import { displayItem } from './navigation';
 
 export class task {
-  constructor(title, date, priority, menuTab) {
+  constructor(title, date, priority, project) {
     this.title = title;
     this.date = date;
     this.priority = priority;
-    this.menuTab = menuTab;
+    this.project = project;
+    this.navigationButton = document.querySelectorAll('nav>button');
   }
+
+  updateShelf(object) {
+    shelf.push(object);
+    this.checkActiveAndDisplay();
+  }
+
+  checkActiveAndDisplay() {
+    this.navigationButton.forEach((button) => {
+      if (
+        button.classList.contains('active') &&
+        button.innerHTML === 'All projects'
+      ) {
+        displayItem(shelf);
+      } else if (button.classList.contains('active')) {
+        const filtered = shelf.filter(
+          (tasks) => tasks.project === button.innerHTML
+        );
+        displayItem(filtered);
+      }
+    });
+  }
+}
+
+export class event {
+  constructor(button) {
+    this.button = document.querySelector(button);
+    this.createEvent();
+  }
+
   createEvent() {
-    const createButton = document.querySelector('form>button');
-    createButton.addEventListener('click', this.createTask);
+    this.button.addEventListener('click', this.createTask);
   }
+
   createTask() {
     const title = document.querySelector('#title');
     const date = document.querySelector('#date');
@@ -26,14 +53,7 @@ export class task {
       priority.value,
       project.value
     );
-    if (newTask.menuTab === 'important') {
-      important.push(newTask);
-    } else if (newTask.menuTab === 'side') {
-      side.push(newTask);
-    }
-    allProjectDisplay();
-    // initDisplay.displayItem();
-
+    newTask.updateShelf(newTask);
     title.value = '';
     date.value = '';
     priority.value = 'high';
