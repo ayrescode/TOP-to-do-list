@@ -1,8 +1,6 @@
 export const shelf = [];
 import { displayItem } from './navigation';
 
-// const navigationButton = document.querySelectorAll('nav>button');
-
 export class task {
   constructor(title, date, priority, project) {
     this.title = title;
@@ -56,7 +54,6 @@ export class event {
       project.value
     );
     newTask.updateShelf(newTask);
-    console.log(shelf);
     title.value = '';
     date.value = '';
     priority.value = 'high';

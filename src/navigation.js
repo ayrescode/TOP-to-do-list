@@ -26,25 +26,6 @@ function filterAndDisplay(clickedButton) {
   }
 }
 
-// function checkActiveAndDisplay() {
-//   navigationButton.forEach((button) => {
-//     if (
-//       button.classList.contains('active') &&
-//       button.innerHTML === 'All projects'
-//     ) {
-//       displayItem(shelf);
-//     } else {
-//       const filtered = shelf.filter(
-//         (tasks) => tasks.project === button.innerHTML
-//       );
-//       displayItem(filtered);
-//     }
-//   });
-// }
-// checkActiveAndDisplay();
-
-// console.log(navigationButton);
-
 export function displayItem(objectArray) {
   taskArea.innerHTML = '';
 
@@ -60,7 +41,7 @@ export function displayItem(objectArray) {
       selectLow = 'selected';
     }
     const task = document.createElement('div');
-    task.setAttribute('data-index', objectArray.indexOf(item));
+    task.setAttribute('data-index', shelf.indexOf(item));
     task.innerHTML = `<div class="task">
                       <div><input type="checkbox" id="task">
                           <label for="task">${item.title}</label>
@@ -77,4 +58,35 @@ export function displayItem(objectArray) {
                   </div>`;
     taskArea.appendChild(task);
   }
+}
+
+function deleteTask(index) {
+  shelf.splice(index, 1);
+  checkActiveAndDisplay();
+}
+
+function deleteEvent() {
+  taskArea.addEventListener('click', (event) => {
+    if (event.target.classList.contains('delete')) {
+      const index = event.target.parentElement.getAttribute('data-index');
+      deleteTask(index);
+    }
+  });
+}
+deleteEvent();
+
+function checkActiveAndDisplay() {
+  navigationButton.forEach((button) => {
+    if (
+      button.classList.contains('active') &&
+      button.innerHTML === 'All projects'
+    ) {
+      displayItem(shelf);
+    } else if (button.classList.contains('active')) {
+      const filtered = shelf.filter(
+        (tasks) => tasks.project === button.innerHTML
+      );
+      displayItem(filtered);
+    }
+  });
 }
