@@ -1,8 +1,9 @@
 export const shelf = [];
-import { displayItem } from './navigation';
+import { display } from './display';
 
-export class task {
+export class task extends display {
   constructor(title, date, priority, project) {
+    super();
     this.title = title;
     this.date = date;
     this.priority = priority;
@@ -21,12 +22,12 @@ export class task {
         button.classList.contains('active') &&
         button.innerHTML === 'All projects'
       ) {
-        displayItem(shelf);
+        this.displayItem(shelf);
       } else if (button.classList.contains('active')) {
         const filtered = shelf.filter(
           (tasks) => tasks.project === button.innerHTML
         );
-        displayItem(filtered);
+        this.displayItem(filtered);
       }
     });
   }

@@ -1,16 +1,13 @@
-// import { allProjectDisplay } from './navigation';
-
-export const taskArea = document.querySelector('.tasks');
+import { shelf } from './create-task';
 
 export class display {
-  constructor(array) {
-    this.shelf = array;
-    this.deleteEvent();
+  constructor() {
+    this.taskArea;
   }
-  displayItem() {
-    taskArea.innerHTML = '';
-
-    for (const item of this.shelf) {
+  displayItem(objectArray) {
+    this.taskArea = document.querySelector('.tasks');
+    this.taskArea.innerHTML = '';
+    for (const item of objectArray) {
       let selectHigh = '';
       let selectMedium = '';
       let selectLow = '';
@@ -22,7 +19,7 @@ export class display {
         selectLow = 'selected';
       }
       const task = document.createElement('div');
-      task.setAttribute('data-index', this.shelf.indexOf(item));
+      task.setAttribute('data-index', shelf.indexOf(item));
       task.innerHTML = `<div class="task">
                       <div><input type="checkbox" id="task">
                           <label for="task">${item.title}</label>
@@ -37,20 +34,7 @@ export class display {
                       <button class="delete">Delete task</button>
                       </div>
                   </div>`;
-      taskArea.appendChild(task);
+      this.taskArea.appendChild(task);
     }
-  }
-  deleteTask(index) {
-    this.shelf.splice(index, 1);
-    console.log(this.shelf);
-    this.displayItem();
-  }
-  deleteEvent() {
-    taskArea.addEventListener('click', (event) => {
-      if (event.target.classList.contains('delete')) {
-        const index = event.target.parentElement.getAttribute('data-index');
-        this.deleteTask(index);
-      }
-    });
   }
 }
