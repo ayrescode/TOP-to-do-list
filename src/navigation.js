@@ -30,39 +30,3 @@ export class navigation extends display {
     }
   }
 }
-
-// const navigationButton = document.querySelectorAll('nav>button');
-// console.log(document.querySelector('.tasks'));
-
-// const taskArea = document.querySelector('.tasks');
-
-// function deleteTask(index) {
-//   shelf.splice(index, 1);
-//   checkActiveAndDisplay();
-// }
-
-// function deleteEvent() {
-//   taskArea.addEventListener('click', (event) => {
-//     if (event.target.classList.contains('delete')) {
-//       const index = event.target.parentElement.getAttribute('data-index');
-//       deleteTask(index);
-//     }
-//   });
-// }
-// deleteEvent();
-
-// function checkActiveAndDisplay() {
-//   navigationButton.forEach((button) => {
-//     if (
-//       button.classList.contains('active') &&
-//       button.innerHTML === 'All projects'
-//     ) {
-//       displayItem(shelf);
-//     } else if (button.classList.contains('active')) {
-//       const filtered = shelf.filter(
-//         (tasks) => tasks.project === button.innerHTML
-//       );
-//       displayItem(filtered);
-//     }
-//   });
-// }
